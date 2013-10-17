@@ -3,5 +3,6 @@
 /prj/*.suo
 /prj/*.user
 SlimFTPd.exe
+*.conf
 *.ilk
 *.log

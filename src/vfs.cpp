@@ -92,7 +92,8 @@ DWORD VFS::GetDirectoryListing(const char *pszVirtual, DWORD dwIsNLST, listing_t
 					strcat_s(szLine, "/");
 				}
 			} else {
-				wsprintf(szLine, "%c--------- 1 ftp ftp %10u %s %2u ", (w32fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) ? 'd' : '-', w32fd.nFileSizeLow, pszMonthAbbr[stFile.wMonth-1], stFile.wDay);
+				QWORD fileSize = (QWORD(w32fd.nFileSizeHigh) << 32) | w32fd.nFileSizeLow;
+				sprintf_s(szLine, "%c--------- 1 ftp ftp %llu %s %2u ", (w32fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) ? 'd' : '-', fileSize, pszMonthAbbr[stFile.wMonth-1], stFile.wDay);
 				if ((stFile.wYear > stCutoff.wYear) || ((stFile.wYear == stCutoff.wYear) && ((stFile.wMonth > stCutoff.wMonth) || ((stFile.wMonth == stCutoff.wMonth) && (stFile.wDay > stCutoff.wDay))))) {
 					wsprintf(szLine + strlen(szLine), "%.2u:%.2u ", stFile.wHour, stFile.wMinute);
 				} else {

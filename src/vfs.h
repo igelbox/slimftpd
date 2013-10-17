@@ -37,6 +37,8 @@
 
 using namespace std;
 
+typedef unsigned __int64 QWORD;
+
 class VFS
 {
 private:

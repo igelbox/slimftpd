@@ -1,3 +1,7 @@
 /build/
 /prj/*.ncb
+/prj/*.suo
+/prj/*.user
 SlimFTPd.exe
+*.ilk
+*.log

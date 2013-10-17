@@ -1,6 +1,6 @@
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 3,18,0,0
- PRODUCTVERSION 3,18,0,0
+ FILEVERSION 3,19,0,0
+ PRODUCTVERSION 3,19,0,0
  FILEFLAGSMASK 0x17L
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -16,11 +16,11 @@ BEGIN
         BLOCK "040904b0"
         BEGIN
             VALUE "FileDescription", "SlimFTPd"
-            VALUE "FileVersion", "3.18"
+            VALUE "FileVersion", "3.19"
             VALUE "InternalName", "SlimFTPd"
             VALUE "LegalCopyright", "Copyright (C) 2001-2006 WhitSoft Development"
             VALUE "OriginalFilename", "SlimFTPd.exe"
-            VALUE "ProductVersion", "3.18"
+            VALUE "ProductVersion", "3.19"
         END
     END
     BLOCK "VarFileInfo"

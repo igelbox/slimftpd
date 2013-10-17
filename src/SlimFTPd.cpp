@@ -39,7 +39,7 @@
 
 using namespace std;
 
-#define SERVERID "SlimFTPd 3.181, by WhitSoft Development (www.whitsoftdev.com)"
+#define SERVERID "SlimFTPd 3.19, by WhitSoft Development (www.whitsoftdev.com)"
 #define PACKET_SIZE 1452
 #define IP_ADDRESS_TYPE_LAN 1
 #define IP_ADDRESS_TYPE_WAN 2

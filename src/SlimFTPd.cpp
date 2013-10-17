@@ -1144,7 +1144,9 @@ bool WINAPI ConnectionThread(SOCKET sCmd)
 						sprintf_s(szOutput, "550 \"%s\": File not found.\r\n", strNewVirtual.c_str());
 						SocketSendString(sCmd, szOutput);
 					} else {
-						sprintf_s(szOutput, "213 %u\r\n", GetFileSize(hFile, 0));
+						DWORD fileSizeHigh;
+						QWORD fileSize = GetFileSize(hFile, &fileSizeHigh) | (QWORD(fileSizeHigh) << 32);
+						sprintf_s(szOutput, "213 %llu\r\n", fileSize);
 						SocketSendString(sCmd, szOutput);
 						CloseHandle(hFile);
 					}

@@ -1476,9 +1476,19 @@ bool DoSocketFileIO(SOCKET sCmd, SOCKET sData, HANDLE hFile, DWORD dwDirection, 
 	switch (dwDirection) {
 	case SOCKET_FILE_IO_DIRECTION_SEND:
 		for (;;) {
-			if (!ReadFile(hFile, szBuffer, PACKET_SIZE, &dw, 0)) return false;
+			if (!ReadFile(hFile, szBuffer, PACKET_SIZE, &dw, 0)) {
+				char tmpbuff[64];
+				sprintf_s(tmpbuff, "[%u] ReadFile error (%u)", sCmd, GetLastError());
+				pLog->Log(tmpbuff);
+				return false;
+			}
 			if (!dw) return true;
-			if (send(sData, szBuffer, dw, 0) == SOCKET_ERROR) return false;
+			if (send(sData, szBuffer, dw, 0) == SOCKET_ERROR) {
+				char tmpbuff[64];
+				sprintf_s(tmpbuff, "[%u] send error (%u)", sCmd, WSAGetLastError());
+				pLog->Log(tmpbuff);
+				return false;
+			}
 			ioctlsocket(sCmd, FIONREAD, &dw);
 			if (dw) {
 				SocketReceiveString(sCmd, szBuffer, 511);
@@ -1496,7 +1506,12 @@ bool DoSocketFileIO(SOCKET sCmd, SOCKET sData, HANDLE hFile, DWORD dwDirection, 
 			dw = SocketReceiveData(sData, szBuffer, PACKET_SIZE);
 			if (dw == -1) return false;
 			if (dw == 0) return true;
-			if (!WriteFile(hFile, szBuffer, dw, &dw, 0)) return false;
+			if (!WriteFile(hFile, szBuffer, dw, &dw, 0)) {
+				char tmpbuff[64];
+				sprintf_s(tmpbuff, "[%u] WriteFile error (%u)", sCmd, GetLastError());
+				pLog->Log(tmpbuff);
+				return false;
+			}
 		}
 		break;
 	default:

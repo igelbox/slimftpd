@@ -9,6 +9,7 @@
 SlimFTPd.exe
 *.conf
 *.ilk
+*.idb
 *.log
 *.obj
 *.pdb

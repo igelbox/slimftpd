@@ -1,9 +1,15 @@
 /build/
 /dist/
+*.tlog/
 /prj/*.ncb
+/prj/*.opensdf
+/prj/*.sdf
 /prj/*.suo
 /prj/*.user
 SlimFTPd.exe
 *.conf
 *.ilk
 *.log
+*.obj
+*.pdb
+*.res
